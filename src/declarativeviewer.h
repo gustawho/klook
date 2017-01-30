@@ -22,7 +22,7 @@
 #ifndef DECLARATIVEVIEWER_H
 #define DECLARATIVEVIEWER_H
 
-#include <QtDeclarative/QDeclarativeView>
+#include <QtQuick/QQuickView>
 
 class QRect;
 class PreviewGenerator;

@@ -175,7 +175,7 @@ QString Audio::artist()
     QString artists;
     QStringList listArtists = m_mediaObject->metaData("ARTIST");
     if (!listArtists.empty()) {
-        artists = guessEncoding(listArtists.join(", ").toAscii());
+        artists = guessEncoding(listArtists.join(", ").toLatin1());
     }
     return artists;
 }
@@ -185,7 +185,7 @@ QString Audio::album()
     QString albums;
     QStringList listAlbums = m_mediaObject->metaData("ALBUM");
     if (!listAlbums.empty()) {
-        albums = guessEncoding(listAlbums.join(", ").toAscii());
+        albums = guessEncoding(listAlbums.join(", ").toLatin1());
     }
     return albums;
 }
@@ -195,7 +195,7 @@ QString Audio::title()
     QString titles;
     QStringList listTitles = m_mediaObject->metaData("TITLE");
 
-    titles = guessEncoding(listTitles.join(", ").toAscii());
+    titles = guessEncoding(listTitles.join(", ").toLatin1());
     if (titles.isEmpty()) {
         QFileInfo fi(m_mediaObject->currentSource().url().path());
         titles = fi.fileName();
@@ -220,7 +220,7 @@ QString Audio::composer()
     QString composers;
     QStringList listcomposers = m_mediaObject->metaData("COMPOSER");
     if (!listcomposers.empty()) {
-        composers = guessEncoding(listcomposers.join(", ").toAscii());
+        composers = guessEncoding(listcomposers.join(", ").toLatin1());
     }
 
     return composers.toUtf8();
@@ -231,7 +231,7 @@ QString Audio::genre()
     QString genres;
     QStringList listgenres = m_mediaObject->metaData("GENRE");
     if (!listgenres.empty()) {
-        genres = guessEncoding(listgenres.join(", ").toAscii());
+        genres = guessEncoding(listgenres.join(", ").toLatin1());
     }
 
     return genres;

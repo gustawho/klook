@@ -21,7 +21,7 @@
 
 #include "kpartswidget.h"
 
-#include <QtGui/QDesktopWidget>
+#include <QtWidgets/QDesktopWidget>
 
 #include <KToolBar>
 

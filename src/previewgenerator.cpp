@@ -23,7 +23,7 @@
 #include "filemodel.h"
 
 #include <QtCore/QStringList>
-#include <QtGui/QPainter>
+#include <QtWidgets/QPainter>
 
 #include <KIO/PreviewJob>
 #include <KFile>

@@ -24,7 +24,7 @@
 #include <exiv2/exif.hpp>
 #include <exiv2/image.hpp>
 
-#include <QtGui/QImage>
+#include <QtWidgets/QImage>
 
 RotatedImage::RotatedImage(const QString& path)
     : m_path(path)

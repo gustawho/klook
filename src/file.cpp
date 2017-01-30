@@ -23,7 +23,7 @@
 
 #include <QtCore/QFileInfo>
 #include <QtCore/QTemporaryFile>
-#include <QtGui/QImageReader>
+#include <QtWidgets/QImageReader>
 
 #include <KIO/Job>
 #include <KIO/JobClasses>

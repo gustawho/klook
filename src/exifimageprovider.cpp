@@ -19,7 +19,7 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QtGui/QImage>
+#include <QtWidgets/QImage>
 
 #include "exifimageprovider.h"
 #include "rotatedimage.h"

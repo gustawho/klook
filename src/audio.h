@@ -24,7 +24,7 @@
 #define AUDIO_H
 
 #include <QtCore/QTime>
-#include <QtDeclarative/QDeclarativeItem>
+#include <QtQuick/QQuickItem>
 #include <Phonon/MediaObject>
 #include <Phonon/AudioOutput>
 

@@ -1,0 +1,134 @@
+# Daniele Scasciafratte <mte90smanettator@gmail.com>, 2012.
+# Gustavo Castro <gustawho@openmailbox.org>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: klook\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-29 18:29+0600\n"
+"PO-Revision-Date: 2017-01-29 18:37-0700\n"
+"Last-Translator: Gustavo Castro <gustawho@openmailbox.org>\n"
+"Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: file.cpp:106
+msgid "File %1 does not exist"
+msgstr "El archivo %1 no existe"
+
+#: listitemcontent.cpp:31
+msgctxt "Unknown modification date"
+msgid "Unknown"
+msgstr "Desconocido"
+
+#: main.cpp:30
+msgid "KLook is a quick file content preview program"
+msgstr "KLook es un rápido visualizador de contenido"
+
+#: main.cpp:35
+msgid "KLook"
+msgstr ""
+
+#: main.cpp:37
+msgid "(c) ROSA 2011-2012"
+msgstr ""
+
+#: main.cpp:39
+msgid "Julia Mineeva"
+msgstr "Julia Mineeva"
+
+#: main.cpp:40 main.cpp:44 main.cpp:48
+msgid "Developer"
+msgstr "Sviluppatore"
+
+#: main.cpp:43
+msgid "Evgeniy Auzhin"
+msgstr "Evgeniy Auzhin"
+
+#: main.cpp:47
+msgid "Sergey Borovkov"
+msgstr "Sergey Borovkov"
+
+#: main.cpp:56
+msgid "File index "
+msgstr "Archivo índice"
+
+#: main.cpp:57
+msgid "Turn on embedded mode"
+msgstr "Activar modo embebido"
+
+#: main.cpp:58
+msgid "X position of the icon"
+msgstr "Posición X del ícono"
+
+#: main.cpp:59
+msgid "Y position of the icon"
+msgstr "Posición Y del ícono"
+
+#: main.cpp:60
+msgid "Width of the icon"
+msgstr "Ancho del ícono"
+
+#: main.cpp:61
+msgid "Height of the icon"
+msgstr "Alto del ícono"
+
+#: main.cpp:62
+msgid "A required argument 'file'"
+msgstr "Se requiere el argumento 'archivo'"
+
+#: qml/AudioDelegate.qml:104
+msgid "Artist:"
+msgstr "Artista:"
+
+#: qml/AudioDelegate.qml:117
+msgid "Total time:"
+msgstr "Tiempo total:"
+
+#: qml/FolderDelegate.qml:59
+msgid "Folder"
+msgstr "Directorio"
+
+#: qml/FolderDelegate.qml:66 qml/MimeDelegate.qml:64
+msgid "Last Modified:"
+msgstr "Modificado:"
+
+#: qml/FolderDelegate.qml:83 qml/MimeDelegate.qml:82
+msgid "Size:"
+msgstr "Tamaño:"
+
+#: qml/FolderDelegate.qml:99
+msgid "Elements:"
+msgstr "Elementos:"
+
+#: qml/main.qml:48 qml/main.qml:130
+msgid "Open in..."
+msgstr "Abrir en..."
+
+#: qml/main.qml:125
+msgid "Elements: %1"
+msgstr "Elementos: %1"
+
+#: qml/main.qml:130 qml/main.qml:141
+msgid "Open"
+msgstr "Abrir"
+
+#: qml/main.qml:140
+msgid "Open in "
+msgstr "Abrir en"
+
+#: rc.cpp:1
+#, fuzzy
+msgctxt "Sergey Borovkov"
+msgid "Sergey Borovkov"
+msgstr "Sergey Borovkov"
+
+#: rc.cpp:2
+msgctxt "sergey.borovkov@osinit.ru"
+msgid "sergey.borovkov@osinit.ru"
+msgstr "sergey.borovkov@osinit.ru"
+

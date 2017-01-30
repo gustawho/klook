@@ -1,7 +1,7 @@
 #ifndef KPARTSDECLARATIVEITEM_H
 #define KPARTSDECLARATIVEITEM_H
 
-#include <QtGui/QGraphicsProxyWidget>
+#include <QtWidgets/QGraphicsProxyWidget>
 
 class KPartsWidget;
 

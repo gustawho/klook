@@ -22,7 +22,7 @@
 #include "video.h"
 
 
-#include <QtGui/QHBoxLayout>
+#include <QtWidgets/QHBoxLayout>
 
 #include <Phonon/AudioOutput>
 #include <Phonon/MediaObject>

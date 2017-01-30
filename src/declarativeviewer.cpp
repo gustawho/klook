@@ -39,11 +39,11 @@
 #include <QtDBus/QDBusReply>
 #include <QtDeclarative/QDeclarativeContext>
 #include <QtDeclarative/QDeclarativeEngine>
-#include <QtGui/QAbstractTextDocumentLayout>
-#include <QtGui/QApplication>
-#include <QtGui/QDesktopWidget>
-#include <QtGui/QImageReader>
-#include <QtGui/QTextDocument>
+#include <QtWidgets/QAbstractTextDocumentLayout>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QDesktopWidget>
+#include <QtWidgets/QImageReader>
+#include <QtWidgets/QTextDocument>
 
 #include <kdeclarative.h>
 #include <KMimeTypeTrader>
