@@ -98,7 +98,7 @@ signals:
 private:
     Phonon::VideoPlayer* m_player;
 
-    QWidget*        m_wid;
+    QQuickView*        m_wid;
     QHBoxLayout*    m_layout;
 
     int m_videoWidth;

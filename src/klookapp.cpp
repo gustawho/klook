@@ -29,7 +29,7 @@
 
 #include <KCmdLineArgs>
 #include <KIcon>
-#include <KStandardDirs>
+#include <QStandardPaths>
 #include <KUrl>
 
 #include "declarativeviewer.h"
@@ -99,7 +99,7 @@ int KLookApp::newInstance()
     }
     if(!m_viewer) {
         m_viewer = new DeclarativeViewer();
-        QString qmlPath = KStandardDirs::locate("appdata", "main.qml");
+        QString qmlPath = QStandardPaths::locate(QStandardPaths::DataLocation, "main.qml")
         if (isLocal()) // this is hack for developers. should replace it with something better I guess
             qmlPath = "../src/qml/main.qml";
 

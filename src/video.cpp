@@ -37,7 +37,7 @@ Video::Video(QGraphicsItem* parent)
     , m_isPreview(false)
     , m_isReady(false)
 {
-    m_wid = new QWidget();
+    m_wid = new QQuickView();
 
     m_player = new Phonon::VideoPlayer(Phonon::VideoCategory, m_wid);
     m_player->setAttribute(Qt::WA_NoSystemBackground);

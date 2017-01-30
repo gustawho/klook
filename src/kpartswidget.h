@@ -11,7 +11,7 @@ class KPartsWidget : public KParts::MainWindow
 {
     Q_OBJECT
 public:
-    KPartsWidget(QWidget *parent = 0);
+    KPartsWidget(QQuickView *parent = 0);
 
     QString url() const { return m_part->url().url(); }
     void setUrl(const QString &url);

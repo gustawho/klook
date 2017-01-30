@@ -37,8 +37,8 @@
 #include <QtCore/QTimer>
 #include <QtDBus/QDBusInterface>
 #include <QtDBus/QDBusReply>
-#include <QtDeclarative/QDeclarativeContext>
-#include <QtDeclarative/QDeclarativeEngine>
+#include <QtQml/QQmlContext>
+#include <QtQml/QQmlEngine>
 #include <QtWidgets/QAbstractTextDocumentLayout>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDesktopWidget>
@@ -59,7 +59,7 @@ static int arrowIconHeight = 16;
 static int min_width = 600;
 static int min_height = 427;
 
-DeclarativeViewer::DeclarativeViewer(QWidget* parent)
+DeclarativeViewer::DeclarativeViewer(QQuickView* parent)
     : QDeclarativeView(parent)
     , m_lastMousePosition(0, 0)
     , m_isSingleMode(true)
@@ -100,7 +100,7 @@ DeclarativeViewer::DeclarativeViewer(QWidget* parent)
     setAttribute(Qt::WA_TranslucentBackground);
     setStyleSheet("background:transparent;");
 
-    connect(qApp, SIGNAL(focusChanged(QWidget*, QWidget*)), SLOT(focusChanged(QWidget*, QWidget*)));
+    connect(qApp, SIGNAL(focusChanged(QQuickView*, QQuickView*)), SLOT(focusChanged(QQuickView*, QQuickView*)));
     connect(engine(), SIGNAL(quit()), qApp, SLOT(quit()));
 }
 
@@ -715,7 +715,7 @@ QSize DeclarativeViewer::getTextWindowSize(QString url) const
     return size;
 }
 
-void DeclarativeViewer::focusChanged(QWidget*, QWidget* now)
+void DeclarativeViewer::focusChanged(QQuickView*, QQuickView* now)
 {
     if (m_isEmbedded && !now) {
         close();

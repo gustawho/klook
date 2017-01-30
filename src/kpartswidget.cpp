@@ -25,7 +25,7 @@
 
 #include <KToolBar>
 
-KPartsWidget::KPartsWidget(QWidget *parent)
+KPartsWidget::KPartsWidget(QQuickView *parent)
     : KParts::MainWindow(parent, static_cast<Qt::WindowFlags>(KDE_DEFAULT_WINDOWFLAGS))
 {
     m_service = KService::serviceByDesktopPath("okular_part.desktop");

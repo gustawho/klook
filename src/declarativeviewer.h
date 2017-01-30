@@ -58,7 +58,7 @@ class DeclarativeViewer : public QDeclarativeView
 {
     Q_OBJECT
 public:
-    explicit DeclarativeViewer(QWidget *parent = 0);
+    explicit DeclarativeViewer(QQuickView *parent = 0);
     virtual ~DeclarativeViewer();
 
     void init(QStringList urls, bool embedded = false, const QRect& rc = QRect(0, 0, 0, 0), int indexToShow = 0);
@@ -104,7 +104,7 @@ public slots:
     void showWindow();
 
 private slots:
-    void focusChanged(QWidget*, QWidget*);
+    void focusChanged(QQuickView*, QQuickView*);
 
 protected:
     void mousePressEvent(QMouseEvent* event);

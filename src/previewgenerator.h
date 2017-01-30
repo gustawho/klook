@@ -24,7 +24,7 @@
 
 #include <QtCore/QHash>
 #include <QtCore/QObject>
-#include <QtGui/QPixmap>
+#include <QtWidgets/QPixmap>
 
 class FileModel;
 class KFileItem;
