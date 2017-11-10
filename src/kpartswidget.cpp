@@ -24,6 +24,7 @@
 #include <QtWidgets/QDesktopWidget>
 
 #include <KToolBar>
+#include <KDELibs4Support/kglobal.h>
 
 KPartsWidget::KPartsWidget(QQuickView *parent)
     : KParts::MainWindow(parent, static_cast<Qt::WindowFlags>(KDE_DEFAULT_WINDOWFLAGS))

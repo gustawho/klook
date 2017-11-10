@@ -23,7 +23,8 @@
 
 #include <QtCore/QFileInfo>
 #include <QtCore/QTemporaryFile>
-#include <QtWidgets/QImageReader>
+#include <QtGui/QImageReader>
+#include <QUrl>
 
 #include <KIO/Job>
 #include <KIO/JobClasses>
@@ -31,7 +32,7 @@
 #include <KLocalizedString>
 #include <KMimeType>
 #include <kuiserverjobtracker.h>
-#include <Phonon/BackendCapabilities>
+#include <phonon/BackendCapabilities>
 
 File::File(QObject* parent)
     : QObject(parent)
@@ -42,7 +43,7 @@ File::File(QObject* parent)
 {
 }
 
-File::File(KUrl url, QObject* parent)
+File::File(QUrl url, QObject* parent)
     : QObject(parent)
     , m_url(url)
     , m_job(0)
@@ -61,7 +62,7 @@ File::~File()
     stopDownload();
 }
 
-KUrl File::url() const
+QUrl File::url() const
 {
     return m_url;
 }
@@ -115,7 +116,7 @@ void File::download()
     }
     if (m_tempFile->open()) {
         m_downloadInProgress = true;
-        m_job = KIO::file_copy(m_url, KUrl(m_tempFile->fileName()), -1, KIO::Overwrite | KIO::HideProgressInfo);
+        m_job = KIO::file_copy(m_url, QUrl(m_tempFile->fileName()), -1, KIO::Overwrite | KIO::HideProgressInfo);
         m_job->setAutoDelete(false);
         connect(m_job, SIGNAL(result(KJob *)), SLOT(slotDownloadResult(KJob *)));
         KIO::getJobTracker()->registerJob(m_job);

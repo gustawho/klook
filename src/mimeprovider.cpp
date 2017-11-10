@@ -21,17 +21,22 @@
 
 #include "mimeprovider.h"
 
-#include <KIcon>
-#include <KMimeType>
+#include <QQuickImageProvider>
+#include <QIcon>
+#include <QMimeType>
+#include <QMimeDatabase>
+
+#include <kio/global.h>
 
 MimeProvider::MimeProvider()
-    : QDeclarativeImageProvider(Pixmap)
+    : QQuickImageProvider(Pixmap)
 {
 }
 
 QPixmap MimeProvider::requestPixmap(const QString& id, QSize* size, const QSize &requestedSize)
 {
-    KIcon icon(KMimeType::iconNameForUrl(id));
+	QMimeDatabase db;
+	const QString iconName = db.mimeTypeForUrl(id).iconName();
 
     QPixmap pixmap = icon.isNull() ? QPixmap(":images/pla-empty-box.png") : icon.pixmap(requestedSize);
     *size = pixmap.size();

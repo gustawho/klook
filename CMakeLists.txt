@@ -90,6 +90,7 @@ target_link_libraries( klook ${EXIV2_LIBRARIES}
                        KF5::IconThemes
                        KF5::ConfigCore
                        KF5::ConfigWidgets
+                       KF5::DBusAddons
                        Phonon::phonon4qt5 )
 
 install( TARGETS klook ${INSTALL_TARGETS_DEFAULT_ARGS} )

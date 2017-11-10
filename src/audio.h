@@ -25,14 +25,17 @@
 
 #include <QtCore/QTime>
 #include <QtQuick/QQuickItem>
-#include <Phonon/MediaObject>
-#include <Phonon/AudioOutput>
-
-#include <KUrl>
+#include <QUrl>
+#include <phonon/abstractaudiooutput.h>
+#include <phonon/abstractaudiooutput.h>
+#include <phonon/VideoWidget>
+#include <phonon/MediaSource>
+#include <phonon/MediaObject>
+#include <phonon/AudioOutput>
 
 class QHBoxLayout;
 
-class Audio : public QDeclarativeItem
+class Audio : public QQuickItem
 {
     Q_OBJECT
     Q_PROPERTY(QString source READ source WRITE setSource NOTIFY sourceChanged)
@@ -51,12 +54,12 @@ class Audio : public QDeclarativeItem
     Q_PROPERTY(QString genre READ genre  NOTIFY genreChanged)
 
 public:
-    Audio(QDeclarativeItem* parent = 0);
+    void Audio(QQuickItem* parent);
     ~Audio();
 
 public slots:
     QString source() const;
-    void setSource(const KUrl &source);
+    void setSource(const QUrl& source);
 
     bool playing() const;
     bool paused() const;

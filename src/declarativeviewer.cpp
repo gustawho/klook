@@ -20,7 +20,6 @@
  */
 
 #include "declarativeviewer.h"
-
 #include "audio.h"
 #include "exifimageprovider.h"
 #include "file.h"
@@ -39,16 +38,17 @@
 #include <QtDBus/QDBusReply>
 #include <QtQml/QQmlContext>
 #include <QtQml/QQmlEngine>
-#include <QtWidgets/QAbstractTextDocumentLayout>
+#include <QAbstractTextDocumentLayout>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDesktopWidget>
-#include <QtWidgets/QImageReader>
-#include <QtWidgets/QTextDocument>
+#include <QtGui/QImageReader>
+#include <QtGui/QTextDocument>
+#include <QUrl>
 
-#include <kdeclarative.h>
+#include <KF5/KDeclarative/kdeclarative/kdeclarative.h>
 #include <KMimeTypeTrader>
 #include <KWindowSystem>
-#include <plasma/windoweffects.h>
+#include <KF5/KWindowSystem/kwindoweffects.h>
 
 static int header_height = 27;
 static int border_width = 2;
@@ -60,7 +60,7 @@ static int min_width = 600;
 static int min_height = 427;
 
 DeclarativeViewer::DeclarativeViewer(QQuickView* parent)
-    : QDeclarativeView(parent)
+    : QQuickView(parent)
     , m_lastMousePosition(0, 0)
     , m_isSingleMode(true)
     , m_moving(false)
@@ -271,7 +271,7 @@ void DeclarativeViewer::initModel(QStringList urls)
 
     QList<ListItem *> items;
     foreach(const QString &str, urls) {
-        File *file = new File(KUrl(str));
+        File *file = new File(QUrl(str));
         items.append(new ListItem(file, m_fileModel));
     }
     m_fileModel->appendRows(items);

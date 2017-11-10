@@ -23,9 +23,11 @@
 #include "listitem.h"
 #include "file.h"
 
+#include <QLocale>
+
 #include <kio/directorysizejob.h>
 #include <KIO/StatJob>
-#include <KLocale>
+#include <KLocalizedString>
 
 ListItemContent::ListItemContent(File *file, QObject *parent)
     : QObject(parent)
@@ -50,11 +52,12 @@ QVariant ListItemFallbackContent::data(int role) const
     if (role == ListItem::LastModifiedRole) {
         QString modificationDate = m_modificationTime.date().isNull()
                 ? i18nc("Unknown modification date", "Unknown")
-                : KGlobal::locale()->formatDate(m_modificationTime.date());
+                : QLocale().toString(m_modificationTime.date());
         return modificationDate;
     }
     else if (role == ListItem::ContentSizeRole) {
-        return KGlobal::locale()->formatByteSize(m_size);
+        // return KGlobal::locale()->formatByteSize(m_size);
+		return QString::number(m_size);
     }
     else if(role == ListItem::StatCompleteRole) {
         return m_statComplete;
@@ -94,7 +97,8 @@ QVariant ListItemDirectoryContent::data(int role) const
         return m_isScanned;
 
     case ListItem::ContentSizeRole:
-        return KGlobal::locale()->formatByteSize(m_totalSize);
+        // return KGlobal::locale()->formatByteSize(m_totalSize);
+		return QString::number(m_totalSize);
 
     case ListItem::CountRole:
         return QString::number(m_totalFiles);

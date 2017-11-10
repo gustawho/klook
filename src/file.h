@@ -24,7 +24,7 @@
 
 #include <QtCore/QObject>
 
-#include <KUrl>
+#include <QUrl>
 
 namespace KIO {
 class FileCopyJob;
@@ -52,10 +52,10 @@ public:
         Error
     };
     File(QObject* parent);
-    File(KUrl url = KUrl(), QObject* parent = 0);
+    File(QUrl url = QUrl(), QObject* parent = 0);
     ~File();
 
-    KUrl url() const;
+    QUrl url() const;
     void setUrl(QUrl url);
 
     File::FileType type() const;
@@ -91,7 +91,7 @@ private:
     void download(); // download file and return path to temporary file
     bool needDownload();
 
-    KUrl m_url;
+    QUrl m_url;
     KIO::FileCopyJob *m_job;
     QString m_error;
     FileType m_type;

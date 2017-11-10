@@ -20,7 +20,6 @@
  */
 
 import QtQuick 2.3
-import Widgets 1.0
 
 Component {
     id: audioDelegate

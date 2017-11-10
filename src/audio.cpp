@@ -25,13 +25,14 @@
 #include <QtCore/QFileInfo>
 #include <QtCore/QString>
 #include <QtCore/QTextCodec>
+#include <QObject>
+#include <QUrl>
+#include <phonon/AudioOutput>
+#include <phonon/MediaObject>
+#include <phonon/VideoWidget>
 
-#include <Phonon/AudioOutput>
-#include <Phonon/MediaObject>
-#include <Phonon/VideoWidget>
-
-Audio::Audio(QDeclarativeItem* parent)
-    : QDeclarativeItem(parent)
+Audio::Audio(QQuickItem* parent)
+    : QQuickItem(parent)
     , m_isPreview(false)
     , m_isReady(false)
 {
@@ -82,7 +83,7 @@ QString Audio::source() const
     return m_mediaObject->currentSource().url().toString();
 }
 
-void Audio::setSource(const KUrl& source)
+void Audio::setSource(const QUrl& source)
 {
     m_mediaObject->setCurrentSource(source);
     emit sourceChanged();

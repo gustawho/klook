@@ -54,11 +54,11 @@ typedef enum ArrowPosition
 
 } ArrowPosition;
 
-class DeclarativeViewer : public QDeclarativeView
+class DeclarativeViewer : public QQuickView
 {
     Q_OBJECT
 public:
-    explicit DeclarativeViewer(QQuickView *parent = 0);
+    void DeclarativeViewer(QQuickView* parent = 0);
     virtual ~DeclarativeViewer();
 
     void init(QStringList urls, bool embedded = false, const QRect& rc = QRect(0, 0, 0, 0), int indexToShow = 0);
