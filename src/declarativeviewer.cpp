@@ -50,7 +50,7 @@
 #include <KDeclarative/KDeclarative>
 #include <KMimeTypeTrader>
 #include <KWindowSystem>
-//#include <plasma/windoweffects.h>
+#include <KWindowSystem/kwindoweffects.h>
 
 static int header_height = 27;
 static int border_width = 2;
@@ -144,9 +144,9 @@ void DeclarativeViewer::init(QStringList urls, bool embedded, const QRect& rc, i
 void DeclarativeViewer::resizeEvent(QResizeEvent *event)
 {
     if (KWindowSystem::compositingActive()) {
-        //QRegion mask(QRect(QPoint(), size()));
-        //Plasma::WindowEffects::enableBlurBehind(winId(), true, mask);
-        //Plasma::WindowEffects::overrideShadow(winId(), true);
+        QRegion mask(QRect(QPoint(), size()));
+        KWindowEffects::enableBlurBehind(winId(), true, mask);
+        // Plasma::KWindowEffects::overrideShadow(winId(), true); FIXME
     }
 
     QQuickWindow::resizeEvent(event);
@@ -379,8 +379,7 @@ void DeclarativeViewer::centerWidget(const QSize& sz)
     if (!isVisible()) {
         show();
     }
-    //FIXME
-    //activateWindow();
+    // activateWindow(); FIXME
 }
 
 void DeclarativeViewer::updateCurrentFile(int index)
