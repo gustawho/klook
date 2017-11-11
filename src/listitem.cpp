@@ -23,6 +23,8 @@
 #include "listitemcontent.h"
 #include "filemodel.h"
 
+#include <QUrl>
+
 ListItem::ListItem(File *file, QObject *parent)
     : QObject(parent), m_file(file), m_content(0)
 {
@@ -37,7 +39,7 @@ QString ListItem::path() const
         result = m_file->tempFilePath();
     }
     else {
-        result = m_file->url().pathOrUrl();
+		result = m_file->url().url(QUrl::PreferLocalFile);
     }
     return result;
 }

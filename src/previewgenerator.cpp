@@ -23,11 +23,13 @@
 #include "filemodel.h"
 
 #include <QtCore/QStringList>
-#include <QtWidgets/QPainter>
+#include <QtGui/QPainter>
+#include <QUrl>
 
 #include <KIO/PreviewJob>
 #include <KFile>
 #include <KIcon>
+#include <KMimeType>
 
 PreviewGenerator::PreviewGenerator()
     : m_plugins(KIO::PreviewJob::availablePlugins())
@@ -64,7 +66,7 @@ void PreviewGenerator::previewJobResult(const KFileItem &item, const QPixmap &pi
 
 void PreviewGenerator::previewJobFailed(const KFileItem &item)
 {
-    KIcon icon(KMimeType::iconNameForUrl(item.url()));
+	KIcon icon(KMimeType::iconNameForUrl(item.url()));
     QPixmap pixmap = icon.isNull() ? QPixmap(":images/pla-empty-box.png") : icon.pixmap(500);
 
     m_previews.insert(item.url().url(), pixmap);
@@ -73,7 +75,7 @@ void PreviewGenerator::previewJobFailed(const KFileItem &item)
 
 QPixmap PreviewGenerator::takePreviewPixmap(QString filePath)
 {
-    QHash<QString, QPixmap>::iterator it = m_previews.find(KUrl(filePath).url());
+    QHash<QString, QPixmap>::iterator it = m_previews.find(QUrl(filePath).url());
     if (it != m_previews.end()) {
         QPixmap pixmap = it.value();
         m_previews.erase(it);
@@ -86,7 +88,7 @@ QPixmap PreviewGenerator::takePreviewPixmap(QString filePath)
 void PreviewGenerator::request(const QString &path, const QSize &size)
 {
     KFileItemList fileList;
-    KFileItem fileItem(KFileItem::Unknown, KFileItem::Unknown, KUrl(path), true);
+    KFileItem fileItem(KFileItem::Unknown, KFileItem::Unknown, QUrl(path), true);
     fileList.append(fileItem);
 
     KIO::PreviewJob *job = KIO::filePreview(fileList, size, &m_plugins);

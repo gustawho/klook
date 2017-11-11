@@ -24,9 +24,10 @@
 
 #include <QtWidgets/QHBoxLayout>
 
-#include <Phonon/AudioOutput>
-#include <Phonon/MediaObject>
-#include <Phonon/VideoWidget>
+#include <phonon/AudioOutput>
+#include <phonon/MediaObject>
+#include <phonon/VideoWidget>
+#include <QQuickView>
 
 Video::Video(QGraphicsItem* parent)
     : QGraphicsProxyWidget(parent)
@@ -37,7 +38,7 @@ Video::Video(QGraphicsItem* parent)
     , m_isPreview(false)
     , m_isReady(false)
 {
-    m_wid = new QQuickView();
+    m_wid = new QWidget();
 
     m_player = new Phonon::VideoPlayer(Phonon::VideoCategory, m_wid);
     m_player->setAttribute(Qt::WA_NoSystemBackground);
@@ -105,7 +106,7 @@ QString Video::source() const
     return m_player->mediaObject()->currentSource().url().toString();
 }
 
-void Video::setSource(const KUrl &source)
+void Video::setSource(const QUrl &source)
 {
     m_player->mediaObject()->setCurrentSource(source);
     emit sourceChanged();

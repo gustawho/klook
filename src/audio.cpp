@@ -21,12 +21,13 @@
 
 #include "audio.h"
 
-#include <KEncodingProber>
 #include <QtCore/QFileInfo>
 #include <QtCore/QString>
 #include <QtCore/QTextCodec>
 #include <QObject>
 #include <QUrl>
+
+#include <KEncodingProber>
 #include <phonon/AudioOutput>
 #include <phonon/MediaObject>
 #include <phonon/VideoWidget>

@@ -27,9 +27,11 @@
 #include <QCommandLineOption>
 #include <QSessionManager>
 
-#include <KAboutData>
+#include <K4AboutData>
+#include <KCmdLineArgs>
 #include <KLocale>
-#include <KDBusAddons/KDBusService>
+#include <KCmdLineOptions>
+#include <KUniqueApplication>
 
 #include "klookapp.h"
 
@@ -38,56 +40,41 @@ static const char version[] = "1.1";
 
 int main(int argc, char *argv[])
 {
-
-	KAboutData aboutData(QStringLiteral("klook"), i18n("KLook"),
-						version, i18n("A quick file content preview program"), KAboutLicense::GPL_V3,
-						i18n("(c) ROSA 2011-2012, gustawho 2017"));
-
-    aboutData.addAuthor(i18n("Julia Mineeva"),
-						i18n("Developer"),
-						QStringLiteral("julia.mineeva@osinit.ru"));
-
-    aboutData.addAuthor(i18n("Evgeniy Auzhin"),
-						i18n("Developer"),
-						QStringLiteral("evgeniy.augin@osinit.ru"));
-
-    aboutData.addAuthor(i18n("Sergey Borovkov"),
-						i18n("Developer"),
-						QStringLiteral("sergey.borovkov@osinit.ru"));
-
-	aboutData.addAuthor(i18n("Gustavo Castro"),
-						i18n("Developer, KF5 port"),
-						QStringLiteral("me@gustawho.com"));
-
-	QApplication::setWindowIcon(QIcon::fromTheme("klook"));
-
-    QApplication app(argc, argv); // PORTING SCRIPT: move this to before the KAboutData initialization
-    QCommandLineParser parser;
-    KAboutData::setApplicationData(aboutData);
-    parser.addVersionOption();
-    parser.addHelpOption();
-    //PORTING SCRIPT: adapt aboutdata variable if necessary
-    aboutData.setupCommandLine(&parser);
-    parser.process(app); // PORTING SCRIPT: move this to after any parser.addOption
-    aboutData.processCommandLine(&parser);
-
-    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("i"), i18n("File index "), QLatin1String("i"), QLatin1String("0")));
-    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("embedded"), i18n("Turn on embedded mode"), QLatin1String("0")));
-    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("x"), i18n("X position of the icon"), QLatin1String("x"), QLatin1String("0")));
-    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("y"), i18n("Y position of the icon"), QLatin1String("y"), QLatin1String("0")));
-    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("w"), i18n("Width of the icon"), QLatin1String("width"), QLatin1String("0")));
-    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("h"), i18n("Height of the icon"), QLatin1String("height"), QLatin1String("0")));
-    parser.addPositionalArgument(QLatin1String("file"), i18n("A required argument 'file'"), QLatin1String(0));
-
-    KDBusService service(KDBusService::Unique);
-	auto disableSessionManagement = [](QSessionManager &sm) {
-		sm.setRestartHint(QSessionManager::RestartNever);
-	};
-	QObject::connect(&app, &QGuiApplication::commitDataRequest, \
-	disableSessionManagement);
-	QObject::connect(&app, \
-	&QGuiApplication::saveStateRequest, disableSessionManagement);
-
-    KLookApp session;
-    return app.exec();
+	K4AboutData about("klook", "klook", ki18n("KLook"),
+					  version, ki18n(description), K4AboutData::License_GPL_V3,
+					  ki18n("(c) ROSA 2011-2012"));
+	
+	about.addAuthor(ki18n("Julia Mineeva"),
+					ki18n("Developer"),
+					"julia.mineeva@osinit.ru");
+	
+	about.addAuthor(ki18n("Evgeniy Auzhin"),
+					ki18n("Developer"),
+					"evgeniy.augin@osinit.ru");
+	
+	about.addAuthor(ki18n("Sergey Borovkov"),
+					ki18n("Developer"),
+					"sergey.borovkov@osinit.ru");
+	
+	about.setProgramIconName("klook");
+	
+	KCmdLineArgs::init(argc, argv, &about);
+	
+	KCmdLineOptions options;
+	options.add("i <i>", ki18n("File index "), "0");
+	options.add("embedded", ki18n("Turn on embedded mode"), "0");
+	options.add("x <x>", ki18n("X position of the icon"), "0");
+	options.add("y <y>", ki18n("Y position of the icon"), "0");
+	options.add("w <width>", ki18n("Width of the icon"), "0");
+	options.add("h <height>", ki18n("Height of the icon"), "0");
+	options.add("+file", ki18n("A required argument 'file'"), 0);
+	
+	KCmdLineArgs::addCmdLineOptions(options);
+	if (!KUniqueApplication::start()) {
+		fprintf(stderr, "KLook is already running!\n");
+		return 0;
+	}
+	
+	KLookApp a;
+	return a.newInstance();
 }

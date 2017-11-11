@@ -22,6 +22,7 @@
 #include "kpartswidget.h"
 
 #include <QtWidgets/QDesktopWidget>
+#include <QQuickView>
 
 #include <KToolBar>
 #include <KDELibs4Support/kglobal.h>

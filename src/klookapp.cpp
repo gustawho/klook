@@ -26,19 +26,18 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QGraphicsObject>
-#include <QApplication>
-#include <QUrl>
 
 #include <KCmdLineArgs>
 #include <KIcon>
-#include <QStandardPaths>
+#include <KStandardDirs>
+#include <KUrl>
 
 #include "declarativeviewer.h"
 #include "filemodel.h"
 
 
-KLookApp::KLookApp(QObject* parent)
-    : QObject(parent)
+KLookApp::KLookApp()
+    : KUniqueApplication()
     , m_viewer(0)
 {
 }
@@ -50,19 +49,21 @@ KLookApp::~KLookApp()
 
 bool KLookApp::isEmbeddedParam() const
 {
-    return parser.isSet("embedded");
+    KCmdLineArgs* args = KCmdLineArgs::parsedArgs();
+    return args->isSet("embedded");
 }
 
 QRect KLookApp::rectParam() const
 {
+    KCmdLineArgs* args = KCmdLineArgs::parsedArgs();
     QRect rc;
-    if (parser.isSet("x") && parser.isSet("y") &&
-         parser.isSet("w") && parser.isSet("h")) {
+    if (args->isSet("x") && args->isSet("y") &&
+         args->isSet("w") && args->isSet("h")) {
         int x, y, w, h;
-        x = parser.value("x").toInt();
-        y = parser.value("y").toInt();
-        w = parser.value("w").toInt();
-        h = parser.value("h").toInt();
+        x = args->getOption("x").toInt();
+        y = args->getOption("y").toInt();
+        w = args->getOption("w").toInt();
+        h = args->getOption("h").toInt();
         rc = QRect(x, y, w, h);
     }
     return rc;
@@ -70,9 +71,10 @@ QRect KLookApp::rectParam() const
 
 QStringList KLookApp::urlsParam() const
 {
+    KCmdLineArgs* args = KCmdLineArgs::parsedArgs();
     QStringList urls;
-    for (int i = 0; i < parser.positionalArguments().count(); i++) {
-        QUrl url(args->arg(i));
+    for (int i = 0; i < args->count(); i++) {
+        KUrl url(args->arg(i));
         if(url.isRelative()) {
             url.setUrl(args->cwd());
             url.addPath(args->arg(i));
@@ -85,18 +87,19 @@ QStringList KLookApp::urlsParam() const
 int KLookApp::newInstance()
 {
     KCmdLineArgs::setCwd(QDir::currentPath().toUtf8());
+    KCmdLineArgs* args = KCmdLineArgs::parsedArgs();
 
     QStringList urls = urlsParam();
     QRect rc = rectParam();
     bool embedded = isEmbeddedParam();
 
-    int index = parser.value("i").toInt();
+    int index = args->getOption("i").toInt();
     if (index >= urls.count()) {
         index = 0;
     }
     if(!m_viewer) {
         m_viewer = new DeclarativeViewer();
-        QString qmlPath = QStandardPaths::locate(QStandardPaths::DataLocation, "main.qml");
+        QString qmlPath = KStandardDirs::locate("appdata", "main.qml");
         if (isLocal()) // this is hack for developers. should replace it with something better I guess
             qmlPath = "../src/qml/main.qml";
 
@@ -106,17 +109,17 @@ int KLookApp::newInstance()
         }
 
         m_viewer->setSource(QUrl::fromLocalFile(qmlPath));
-
-        QObject* rootObject = dynamic_cast<QObject*>(m_viewer->rootObject());
-
-        QObject::connect(m_viewer, SIGNAL(setFullScreenState()), rootObject, SLOT(setFullScreenState()));
-        QObject::connect(m_viewer, SIGNAL(setEmbeddedState()), rootObject, SLOT(setEmbeddedState()));
-        QObject::connect(m_viewer, SIGNAL(setStartWindow()), rootObject, SLOT(setStartWindow()));
-        QObject::connect(rootObject, SIGNAL(setGalleryView(bool)), m_viewer, SLOT(onSetGallery(bool)));
+        //FIXME
+//         QObject* rootObject = dynamic_cast<QObject*>(m_viewer->rootObject());
+// 
+//         QObject::connect(m_viewer, SIGNAL(setFullScreenState()), rootObject, SLOT(setFullScreenState()));
+//         QObject::connect(m_viewer, SIGNAL(setEmbeddedState()), rootObject, SLOT(setEmbeddedState()));
+//         QObject::connect(m_viewer, SIGNAL(setStartWindow()), rootObject, SLOT(setStartWindow()));
+//         QObject::connect(rootObject, SIGNAL(setGalleryView(bool)), m_viewer, SLOT(onSetGallery(bool)));
     }
 
     m_viewer->init(urls, embedded, rc, index);
-    
+    args->clear();
     return 0;
 }
 

@@ -24,8 +24,8 @@
 #define VIDEO_H
 
 #include <QGraphicsProxyWidget>
-#include <Phonon/VideoPlayer>
-#include <KUrl>
+#include <phonon/VideoPlayer>
+#include <QUrl>
 
 class QHBoxLayout;
 
@@ -50,7 +50,7 @@ public:
 
 public slots:
     QString source() const;
-    void setSource(const KUrl& source);
+    void setSource(const QUrl& source);
 
     bool playing() const;
     bool paused() const;
@@ -98,7 +98,7 @@ signals:
 private:
     Phonon::VideoPlayer* m_player;
 
-    QQuickView*        m_wid;
+    QWidget*        m_wid;
     QHBoxLayout*    m_layout;
 
     int m_videoWidth;

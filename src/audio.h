@@ -26,12 +26,12 @@
 #include <QtCore/QTime>
 #include <QtQuick/QQuickItem>
 #include <QUrl>
-#include <phonon/abstractaudiooutput.h>
-#include <phonon/abstractaudiooutput.h>
+#include <phonon/AbstractAudioOutput>
 #include <phonon/VideoWidget>
 #include <phonon/MediaSource>
 #include <phonon/MediaObject>
 #include <phonon/AudioOutput>
+
 
 class QHBoxLayout;
 
@@ -54,7 +54,7 @@ class Audio : public QQuickItem
     Q_PROPERTY(QString genre READ genre  NOTIFY genreChanged)
 
 public:
-    void Audio(QQuickItem* parent);
+    Audio(QQuickItem* parent = 0);
     ~Audio();
 
 public slots:

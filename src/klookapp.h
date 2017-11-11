@@ -22,16 +22,16 @@
 #ifndef KLOOK_APP_H
 #define KLOOK_APP_H
 
-#include <QObject>
+#include <KUniqueApplication>
 
 class DeclarativeViewer;
 
-class KLookApp : public QObject
+class KLookApp : public KUniqueApplication
 {
     Q_OBJECT
 
 public:
-    KLookApp();
+	KLookApp();
     ~KLookApp();
     virtual int newInstance();
 

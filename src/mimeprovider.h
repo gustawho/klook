@@ -23,9 +23,9 @@
 #define MIMEPROVIDER_H
 
 
-#include <QtQuick/QQuickImageProvider>
+#include <QQuickImageProvider>
 
-class MimeProvider : public QDeclarativeImageProvider
+class MimeProvider : public QQuickImageProvider
 {
 public:
     MimeProvider();

@@ -4,7 +4,7 @@
 #include <kparts/mainwindow.h>
 
 #include <QtCore/QPointer>
-
+#include <KParts/ReadOnlyPart>
 #include <KService>
 
 class KPartsWidget : public KParts::MainWindow

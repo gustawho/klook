@@ -2,7 +2,7 @@ project( klook )
 cmake_minimum_required( VERSION 2.8.12 )
 
 find_package(ECM REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
 include(KDECompilerSettings)
@@ -13,9 +13,9 @@ include(ECMInstallIcons)
 include(WriteBasicConfigVersionFile)
 include(FeatureSummary)
 
-set(QT_MIN_VERSION "5.7.0")
+set(QT_MIN_VERSION "5.9.0")
 
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS
     Core
     Gui
     Quick
@@ -29,17 +29,20 @@ find_package(KF5 REQUIRED
     WindowSystem IconThemes Runner
     Declarative KDELibs4Support )
 
-find_package(Phonon4Qt5 CONFIG REQUIRED)
+find_package(Phonon4Qt5 REQUIRED)
 
 add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS -DQT_NO_URL_CAST_FROM_STRING)
 add_definitions(-std=c++11)
-include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
+include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${PHONON_INCLUDE_DIR})
 
 add_subdirectory( icons )
 
 set(EXIV2_MIN_VERSION "0.25")
-find_package(Exiv2)
-#macro_log_feature(EXIV2_FOUND "Exiv2" "Provides image metadata support" "http://www.exiv2.org" TRUE ${EXIV2_MIN_VERSION} "")
+find_package(Exiv2 REQUIRED)
+set_package_properties("Exiv2" PROPERTIES
+                       DESCRIPTION "Provides image metadata support"
+                       URL "http://www.exiv2.org"
+                       TYPE REQUIRED)
 
 set( RESOURCES src/resources.qrc )
 QT5_ADD_RESOURCES( QRC_SOURCES ${RESOURCES} )
@@ -78,20 +81,11 @@ ecm_add_app_icon( klook_SRCS ICONS "${CMAKE_CURRENT_SOURCE_DIR}/icons/16-apps-kl
 add_executable( klook ${klook_SRCS} ${QRC_SOURCES} )
 
 target_link_libraries( klook ${EXIV2_LIBRARIES}
-                       Qt5::Core
-                       Qt5::Quick
-                       Qt5::Widgets
-                       KF5::Plasma
+                       ${PHONON_LIBRARY}
                        KF5::Declarative
-                       KF5::KIOWidgets
-                       KF5::KIOFileWidgets
                        KF5::KDELibs4Support
-                       KF5::CoreAddons
-                       KF5::IconThemes
-                       KF5::ConfigCore
-                       KF5::ConfigWidgets
-                       KF5::DBusAddons
-                       Phonon::phonon4qt5 )
+                       Qt5::Widgets
+                       Qt5::Quick)
 
 install( TARGETS klook ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
