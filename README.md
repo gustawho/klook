@@ -1,18 +1,22 @@
-First attempt to port to KF5 - unusable
+# KLook
+A quick preview tool based on Qt and QtQuick, allows users to look at the contents of a file in Dolphin without running any third application.
 
-Klook is a quick preview feature based on Qt and Qt Quick, allows users to look 
-at the contents of a file in the Dolphin
+## Dependencies
+To build KLook, make sure you have the following packages installed on your system:
+* CMake >= 2.8.12
+* KDE Frameworks 5
+* Extra CMake Modules (ECM)
+* Qt 5 (is suggested to use the most recent version available for your system)
 
-To build KLook you must have following programs and packages installed:
-1) CMake
-2) KDE Frameworks 5
-3) Extra CMake Modules
-4) Qt 5
+## Compiling
+Within the project directory:
+1. `mkdir build`
+2. `cd build`
+3. `cmake .. && make && make install`
 
-To install it just do:
-1) mkdir build
-2) cd build
-3) cmake .. && make && make install
+NOTE: Keep in mind that in order to use KLook within Dolphin, you also have to build it with the required patches.
 
-If you want to use KLook from Dolphin you also have to apply Dolphin patches 
-that make Klook show up on pressing space.
+## TODO:
+* Move away from deprecated libraries (Eg. KUrl)
+* Get rid of KDELibs4Support
+* Redesign the QML interface
