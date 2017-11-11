@@ -2,16 +2,16 @@
 #define KPARTSWIDGET_H
 
 #include <kparts/mainwindow.h>
+#include <kparts/readonlypart.h>
 
 #include <QtCore/QPointer>
-#include <KParts/ReadOnlyPart>
 #include <KService>
 
 class KPartsWidget : public KParts::MainWindow
 {
     Q_OBJECT
 public:
-    KPartsWidget(QQuickView *parent = 0);
+    KPartsWidget(QWidget *parent = 0);
 
     QString url() const { return m_part->url().url(); }
     void setUrl(const QString &url);

@@ -31,8 +31,7 @@ find_package(KF5 REQUIRED
 
 find_package(Phonon4Qt5 REQUIRED)
 
-add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS -DQT_NO_URL_CAST_FROM_STRING)
-add_definitions(-std=c++11)
+add_definitions(-fexceptions)
 include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${PHONON_INCLUDE_DIR})
 
 add_subdirectory( icons )

@@ -23,7 +23,7 @@
 #define MIMEPROVIDER_H
 
 
-#include <QQuickImageProvider>
+#include <QtQuick/QQuickImageProvider>
 
 class MimeProvider : public QQuickImageProvider
 {

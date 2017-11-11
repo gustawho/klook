@@ -19,7 +19,7 @@ showing the stored image):
 
 #include <QtCore/QSize>
 #include <QtCore/QString>
-#include <QtWidgets/QMatrix>
+#include <QtGui/QMatrix>
 
 enum Orientation {
     NOT_AVAILABLE = 0,

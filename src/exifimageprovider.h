@@ -22,7 +22,7 @@
 #ifndef EXIFIMAGEPROVIDER_H
 #define EXIFIMAGEPROVIDER_H
 
-#include <QtQuick/QQuickImageProvider>
+#include <QQuickImageProvider>
 
 class ExifImageProvider : public QQuickImageProvider
 {

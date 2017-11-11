@@ -20,12 +20,13 @@
  */
 
 #include <QtGui/QImage>
+#include <QQuickImageProvider>
 
 #include "exifimageprovider.h"
 #include "rotatedimage.h"
 
 ExifImageProvider::ExifImageProvider()
-    : QDeclarativeImageProvider(Image)
+    : QQuickImageProvider(Image)
 {
 }
 

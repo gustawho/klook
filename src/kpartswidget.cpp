@@ -21,13 +21,12 @@
 
 #include "kpartswidget.h"
 
-#include <QtWidgets/QDesktopWidget>
-#include <QQuickView>
+#include <QDesktopWidget>
 
 #include <KToolBar>
-#include <KDELibs4Support/kglobal.h>
+#include <KGlobal>
 
-KPartsWidget::KPartsWidget(QQuickView *parent)
+KPartsWidget::KPartsWidget(QWidget *parent)
     : KParts::MainWindow(parent, static_cast<Qt::WindowFlags>(KDE_DEFAULT_WINDOWFLAGS))
 {
     m_service = KService::serviceByDesktopPath("okular_part.desktop");
